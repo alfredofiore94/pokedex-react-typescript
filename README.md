@@ -39,6 +39,22 @@ npm install react-router-dom
 
 npm i @tanstack/react-query
 
-## Installazione daisy UI
+## Installazione tailwind css e daisy UI
 
-npm i -D daisyui@latest
+npm install tailwindcss@latest @tailwindcss/vite@latest daisyui@latest
+
+### in app.css inserire l'import
+
+@plugin "daisyui";
+@import "tailwindcss";
+
+### in vite.config.ts aggiungere
+
+import react from "@vitejs/plugin-react";
+import { defineConfig } from "vite";
+import tailwindcss from "@tailwindcss/vite";
+
+// https://vite.dev/config/
+export default defineConfig({
+plugins: [react(), tailwindcss()],
+});
