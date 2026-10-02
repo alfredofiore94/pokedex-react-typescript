@@ -3,8 +3,8 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import ErrorPage from "./pages/error-page/error-page";
 import RootPage from "./pages/root-page/root-page";
 import HomePage from "./pages/home-page/home-page";
-import ResearchPage from "./pages/research-page/research-page";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import PokemonDetailsPage from "./pages/pokemon-details-page/pokemon-details-page";
 
 function App() {
   const router = createBrowserRouter([
@@ -13,8 +13,12 @@ function App() {
       element: <RootPage />,
       errorElement: <ErrorPage />,
       children: [
-        { path: "/", element: <HomePage /> },
-        { path: "/pokemon-research", element: <ResearchPage /> },
+        {
+          path: "pokedex",
+          element: <HomePage />,
+          children: [{ path: "details", element: <PokemonDetailsPage /> }],
+        },
+        // { path: "/pokemon-research", element: <ResearchPage /> },
       ],
     },
   ]);

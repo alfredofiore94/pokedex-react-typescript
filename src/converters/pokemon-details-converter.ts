@@ -36,6 +36,7 @@ export class PokemonDetailsConverter extends AbstractConverter<
         id: extractIdByUrl(ability.ability.url),
         name: ability.ability.name,
       };
+      abilities.push(tipology);
     });
     return abilities;
   }
@@ -47,6 +48,7 @@ export class PokemonDetailsConverter extends AbstractConverter<
         id: extractIdByUrl(tp.type.url),
         name: tp.type.name,
       };
+      types.push(tipology);
     });
     return types;
   }
