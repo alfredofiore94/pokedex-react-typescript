@@ -5,6 +5,8 @@ export interface IRepository<T> {
 
   getEntityAsync: () => Promise<ResponseModel<T>>;
 
+  getEntityIdAsync: (entityId: string) => Promise<ResponseModel<T>>;
+
   postEntityAsync: (entity: T) => Promise<ResponseModel<T>>;
 
   postEntitiesAsync: (entities: T[]) => Promise<ResponseModel<T[]>>;
