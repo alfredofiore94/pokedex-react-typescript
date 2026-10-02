@@ -21,10 +21,6 @@ function HomePage() {
 
   const [pokemonlist, setPokemonList] = useState<PokemonBase[]>([]);
 
-  function navigateHandler(path: string) {
-    navigate(path);
-  }
-
   useEffect(() => {
     if (isFetched && data) {
       const pokemonListLoaded = data;
@@ -38,8 +34,7 @@ function HomePage() {
       {isError && (
         <div role="alert" className="alert alert-error alert-soft">
           <span>
-            Errore {error.message} durante il caricamento dei dati dei
-            giocatori!
+            Errore {error.message} durante il caricamento dei dati dei pokemon!
           </span>
         </div>
       )}
@@ -52,7 +47,7 @@ function HomePage() {
         <div className="col-span-3 text-center">
           {isPending ? (
             <label className="no-result">
-              Caricamento giocatori in corso ...
+              Caricamento pokedex in corso ...
             </label>
           ) : (
             <label className="no-result">Nessun risultato disponibile</label>

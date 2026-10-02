@@ -20,3 +20,20 @@ export function initPokemonCard(
     url: url,
   };
 }
+
+export function initPokemondetails(id: number): Pokemon {
+  return {
+    baseExperience: 0,
+    height: 0,
+    weight: 0,
+    abilities: [],
+    types: [],
+    sprites: {
+      baseImageUrl: "./lo",
+      gifImageUrl: loadingGif,
+    },
+    id: id,
+    name: "",
+    url: "",
+  };
+}

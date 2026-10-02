@@ -1,0 +1,31 @@
+.image-pokemon {
+  background-color: whitesmoke;
+  border-color: rgb(124, 110, 2);
+}
+
+@import url("https://fonts.googleapis.com/css2?family=Luckiest+Guy&family=Rubik+Mono+One&display=swap");
+
+.name-pokemon {
+  /* Font in stile cartoon/game */
+  font-family: "Luckiest Guy", "Arial Black", sans-serif;
+  font-size: 3.5rem;
+  font-weight: 900;
+  font-style: italic;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+
+  /* Colore del testo (Giallo Pokémon) */
+  color: #ffcb05;
+
+  /* Bordo e ombra Blu Pokémon usando text-shadow a più livelli */
+  text-shadow:
+    -3px -3px 0 #2a75bb,
+    3px -3px 0 #2a75bb,
+    -3px 3px 0 #2a75bb,
+    3px 3px 0 #2a75bb,
+    -4px 0px 0 #2a75bb,
+    4px 0px 0 #2a75bb,
+    0px -4px 0 #2a75bb,
+    0px 4px 0 #2a75bb,
+    0px 6px 0 #1c4d8d; /* Ombra inferiore più scura per dare profondità */
+}

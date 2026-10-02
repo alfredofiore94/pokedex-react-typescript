@@ -16,9 +16,11 @@ function App() {
         {
           path: "pokedex",
           element: <HomePage />,
-          children: [{ path: "details", element: <PokemonDetailsPage /> }],
         },
-        // { path: "/pokemon-research", element: <ResearchPage /> },
+        {
+          path: "pokedex/details/:pokemonId",
+          element: <PokemonDetailsPage />,
+        },
       ],
     },
   ]);
@@ -26,7 +28,7 @@ function App() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <RouterProvider router={router} />;
+      <RouterProvider router={router} />
     </QueryClientProvider>
   );
 }

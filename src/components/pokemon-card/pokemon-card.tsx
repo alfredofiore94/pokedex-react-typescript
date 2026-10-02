@@ -38,6 +38,10 @@ function PokemonCard({ pokemonBase }: PokemonCardProps) {
     }
   }, [data]);
 
+  function navigateHandler(path: string, pokemonId: number) {
+    navigate(path + "/" + pokemonId);
+  }
+
   return (
     <div className="card bg-base-100 m-10 shadow-sm ">
       <figure className="px-10 pt-10">
@@ -51,7 +55,12 @@ function PokemonCard({ pokemonBase }: PokemonCardProps) {
         <h2 className="card-title">{pokemon.name}</h2>
 
         <div className="card-actions">
-          <button className="btn btn-primary">Apri dettagli pokemon</button>
+          <button
+            className="btn btn-primary"
+            onClick={() => navigateHandler("details/", pokemon.id)}
+          >
+            Apri dettaglio pokemon
+          </button>
         </div>
       </div>
     </div>

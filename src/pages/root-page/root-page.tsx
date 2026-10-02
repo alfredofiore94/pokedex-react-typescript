@@ -5,7 +5,7 @@ function RootPage() {
   return (
     <>
       <NavigationBar />
-      <main>
+      <main className="">
         <Outlet />
       </main>
     </>
