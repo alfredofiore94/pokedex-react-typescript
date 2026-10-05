@@ -1,3 +1,8 @@
+export interface BaseList {
+  pokemonBaseList: PokemonBase[];
+  pokemonCount: number;
+}
+
 export interface PokemonBase {
   id: number;
   name: string;

@@ -1,4 +1,5 @@
 import type { PokemonDetailsDTO } from "../dto/pokemon-details-dto";
+import type { RequestModel } from "../dto/request-model";
 import type { ResponseModel } from "../dto/response-model";
 import { api } from "./api";
 import type { IRepository } from "./i-repository";
@@ -11,20 +12,21 @@ export class PokemonDetailsRepository implements IRepository<PokemonDetailsDTO> 
     throw new Error("Method not implemented.");
   }
   postEntityAsync(
-    entity: PokemonDetailsDTO,
+    entity: RequestModel<PokemonDetailsDTO>,
   ): Promise<ResponseModel<PokemonDetailsDTO>> {
     throw new Error("Method not implemented.");
   }
   postEntitiesAsync(
-    entities: PokemonDetailsDTO[],
+    entities: RequestModel<PokemonDetailsDTO>[],
   ): Promise<ResponseModel<PokemonDetailsDTO[]>> {
     throw new Error("Method not implemented.");
   }
   async getEntityIdAsync(
-    entityId: string,
+    requestModel: RequestModel<PokemonDetailsDTO>,
   ): Promise<ResponseModel<PokemonDetailsDTO>> {
     try {
-      const url = api.BASE_URL + api.GET_POKEMON_DETAILS_URL + entityId;
+      const url =
+        api.BASE_URL + api.GET_POKEMON_DETAILS_URL + requestModel.pathParam;
       console.log("URL", url);
 
       const response: Response = await fetch(url);

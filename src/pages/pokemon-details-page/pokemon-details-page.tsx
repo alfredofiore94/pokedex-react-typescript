@@ -31,8 +31,6 @@ function PokemonDetailsPage() {
   });
   useEffect(() => {
     if (data) {
-      console.log("DETAILS POKEMON", data);
-
       const pokemonLoaded = data;
 
       setPokemon({

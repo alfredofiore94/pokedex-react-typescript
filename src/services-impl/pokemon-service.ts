@@ -3,7 +3,7 @@ import { PokemonDetailsConverter } from "../converters/pokemon-details-converter
 import type { PokemonBaseDTO } from "../dto/pokemon-base-dto";
 import type { PokemonDetailsDTO } from "../dto/pokemon-details-dto";
 import type { ResponseModel } from "../dto/response-model";
-import type { PokemonBase, Pokemon } from "../models/pokemon";
+import type { PokemonBase, Pokemon, BaseList } from "../models/pokemon";
 import { PokemonBaseRepository } from "../repository/pokemon-base-repository";
 import { PokemonDetailsRepository } from "../repository/pokemon-details-repository";
 import type { IPokemonService } from "../services/i-pokemon-service";
@@ -21,12 +21,17 @@ export class PokemonsService implements IPokemonService {
     this._pokemonBaseConverter = new PokemonBaseConverter();
     this._pokemonDetailsConverter = new PokemonDetailsConverter();
   }
-  async getPokemonListBase(): Promise<PokemonBase[]> {
-    const responseModel: ResponseModel<PokemonBaseDTO[]> =
-      await this._pokemonBaseRepository.getEntitiesAsync();
+  async getPokemonListBase(offset: string, limit: string): Promise<BaseList> {
+    const responseModel: ResponseModel<PokemonBaseDTO> =
+      await this._pokemonBaseRepository.getEntityIdAsync({
+        queryParams: [
+          { key: "offset", values: [offset] },
+          { key: "limit", values: [limit] },
+        ],
+      });
 
     if (responseModel.metadata?.result) {
-      return this._pokemonBaseConverter.toEntities(responseModel.payload!);
+      return this._pokemonBaseConverter.toEntity(responseModel.payload!);
     } else {
       console.log(responseModel.metadata?.errorMessage);
     }
@@ -35,14 +40,9 @@ export class PokemonsService implements IPokemonService {
   }
   async getPokemonDetails(id: string): Promise<Pokemon> {
     const responseModel: ResponseModel<PokemonDetailsDTO> =
-      await this._pokemonDetailsRepository.getEntityIdAsync(id);
+      await this._pokemonDetailsRepository.getEntityIdAsync({ pathParam: id });
 
     if (responseModel.metadata?.result) {
-      console.log(
-        "ok details repo",
-        this._pokemonDetailsConverter.toEntity(responseModel.payload!),
-      );
-
       return this._pokemonDetailsConverter.toEntity(responseModel.payload!);
     } else {
       console.log(responseModel.metadata?.errorMessage);

@@ -13,7 +13,7 @@ function PokemonCard({ pokemonBase }: PokemonCardProps) {
   );
   const navigate = useNavigate();
   const pokemonService: PokemonsService = new PokemonsService();
-  const { isPending, isFetched, data, isError, error } = useQuery<Pokemon>({
+  const { isPending, isFetching, data, isError, error } = useQuery<Pokemon>({
     queryKey: ["pokemon", pokemon.id],
     queryFn: () => pokemonService.getPokemonDetails(pokemonBase.id.toString()),
 
@@ -22,9 +22,9 @@ function PokemonCard({ pokemonBase }: PokemonCardProps) {
   });
   useEffect(() => {
     if (data) {
-      console.log("detail data after fetch pokemon", data);
+      // console.log("detail data after fetch pokemon", data);
 
-      const pokemonLoaded = data;
+      const pokemonLoaded = { ...data };
 
       setPokemon({
         ...pokemon,
@@ -36,7 +36,7 @@ function PokemonCard({ pokemonBase }: PokemonCardProps) {
         sprites: pokemonLoaded.sprites,
       });
     }
-  }, [data]);
+  }, [isFetching]);
 
   function navigateHandler(path: string, pokemonId: number) {
     navigate(path + "/" + pokemonId);
@@ -52,6 +52,8 @@ function PokemonCard({ pokemonBase }: PokemonCardProps) {
         />
       </figure>
       <div className="card-body items-center text-center">
+        <h2 className="card-title ">{pokemon.id}</h2>
+
         <h2 className="card-title">{pokemon.name}</h2>
 
         <div className="card-actions">
