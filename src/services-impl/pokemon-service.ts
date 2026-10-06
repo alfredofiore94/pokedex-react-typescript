@@ -21,7 +21,10 @@ export class PokemonsService implements IPokemonService {
     this._pokemonBaseConverter = new PokemonBaseConverter();
     this._pokemonDetailsConverter = new PokemonDetailsConverter();
   }
-  async getPokemonListBase(offset: string, limit: string): Promise<BaseList> {
+  async getPokemonListBaseFiltered(
+    offset: string,
+    limit: string,
+  ): Promise<BaseList> {
     const responseModel: ResponseModel<PokemonBaseDTO> =
       await this._pokemonBaseRepository.getEntityIdAsync({
         queryParams: [
@@ -44,6 +47,17 @@ export class PokemonsService implements IPokemonService {
 
     if (responseModel.metadata?.result) {
       return this._pokemonDetailsConverter.toEntity(responseModel.payload!);
+    } else {
+      console.log(responseModel.metadata?.errorMessage);
+    }
+
+    throw new Error();
+  }
+  async getPokemonListBase(): Promise<BaseList> {
+    const responseModel: ResponseModel<PokemonBaseDTO> =
+      await this._pokemonBaseRepository.getEntityAsync();
+    if (responseModel.metadata?.result) {
+      return this._pokemonBaseConverter.toEntity(responseModel.payload!);
     } else {
       console.log(responseModel.metadata?.errorMessage);
     }

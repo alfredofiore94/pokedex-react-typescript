@@ -4,6 +4,7 @@ import { initPokemonCard } from "../../utils/config-pokemon-card";
 import { useQuery } from "@tanstack/react-query";
 import { PokemonsService } from "../../services-impl/pokemon-service";
 import { useNavigate } from "react-router-dom";
+import noImage from "../../assets/no_image_avaiable.png";
 interface PokemonCardProps {
   pokemonBase: PokemonBase;
 }
@@ -33,7 +34,13 @@ function PokemonCard({ pokemonBase }: PokemonCardProps) {
         weight: pokemonLoaded.weight,
         abilities: pokemonLoaded.abilities,
         types: pokemonLoaded.types,
-        sprites: pokemonLoaded.sprites,
+        sprites: {
+          baseImageUrl: pokemonLoaded.sprites.baseImageUrl,
+          gifImageUrl:
+            pokemonLoaded.sprites.gifImageUrl != null
+              ? pokemonLoaded.sprites.gifImageUrl
+              : noImage,
+        },
       });
     }
   }, [isFetching]);
@@ -45,11 +52,7 @@ function PokemonCard({ pokemonBase }: PokemonCardProps) {
   return (
     <div className="card bg-base-100 m-10 shadow-sm ">
       <figure className="px-10 pt-10">
-        <img
-          src={pokemon.sprites.gifImageUrl}
-          alt="Shoes"
-          className="rounded-xl h-20 "
-        />
+        <img src={pokemon.sprites.gifImageUrl} className="rounded-xl h-20 " />
       </figure>
       <div className="card-body items-center text-center">
         <h2 className="card-title ">{pokemon.id}</h2>
@@ -61,7 +64,7 @@ function PokemonCard({ pokemonBase }: PokemonCardProps) {
             className="btn btn-primary"
             onClick={() => navigateHandler("details/", pokemon.id)}
           >
-            Apri dettaglio pokemon
+            Apri dettaglio
           </button>
         </div>
       </div>

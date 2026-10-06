@@ -9,7 +9,40 @@ export class PokemonBaseRepository implements IRepository<PokemonBaseDTO> {
     throw new Error("Method not implemented.");
   }
   async getEntityAsync(): Promise<ResponseModel<PokemonBaseDTO>> {
-    throw new Error("Method not implemented.");
+    try {
+      let queryParams: string = "?offset=0&limit=999999";
+
+      const url = api.BASE_URL + api.GET_POKEMON_LIST_URL + queryParams;
+      const response: Response = await fetch(url);
+
+      if (response.ok) {
+        const responseModel: ResponseModel<PokemonBaseDTO> = {
+          payload: await response.json(),
+          metadata: {
+            result: true,
+            errorMessage: "",
+          },
+          statusCode: response.status,
+        };
+        return responseModel;
+      }
+
+      return {
+        metadata: {
+          result: false,
+          errorMessage: "Errore getBasePokemon" + response.statusText,
+        },
+        statusCode: response.status,
+      };
+    } catch (error) {
+      const responseModel: ResponseModel<PokemonBaseDTO> = {
+        metadata: {
+          result: false,
+          errorMessage: "Errore getBasePokemon" + error,
+        },
+      };
+      return responseModel;
+    }
   }
   postEntityAsync(
     entity: RequestModel<PokemonBaseDTO>,
