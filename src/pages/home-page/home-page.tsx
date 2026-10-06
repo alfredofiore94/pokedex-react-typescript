@@ -38,29 +38,35 @@ function HomePage() {
       setLimit(1000000);
       setOffset(0);
       setPageNumber(1);
+      setNumberPagesTable(1);
+    } else {
+      setPageNumber(1);
+      setLimit(100);
+      setOffset(0);
     }
   }, [searchPokemonValue]);
 
   useEffect(() => {
-    if (isSuccess && data /*&& searchPokemonValue.trim() == ""*/) {
+    if (isSuccess && data && searchPokemonValue.trim() == "") {
       const countPages =
         data.pokemonCount / limit + (data.pokemonCount % limit != 0 ? 1 : 0);
       setNumberPagesTable(countPages);
     }
-  }, [isSuccess]);
+  }, [isSuccess, limit]);
 
   useEffect(() => {
-    if (isFetched && data /*&& searchPokemonValue.trim() == ""*/) {
+    if (isFetched && data) {
       const pokemonListLoaded = data.pokemonBaseList.map((pk) => ({ ...pk }));
-      if (searchPokemonValue.trim() != "") {
+      if (searchPokemonValue.trim() == "") {
+        setPokemonList(pokemonListLoaded);
+
+        //console.log("list pokemon", pokemonListLoaded);
+      } else {
         const pokemonListFiltered = pokemonListLoaded.filter((pokemonF) => {
-          pokemonF.name.includes(searchPokemonValue.trim());
+          return pokemonF.name.includes(searchPokemonValue.trim());
         });
         setPokemonList(pokemonListFiltered);
-      } else {
-        setPokemonList(pokemonListLoaded);
       }
-      //console.log("list pokemon", pokemonListLoaded);
     }
   }, [isFetching]);
 
