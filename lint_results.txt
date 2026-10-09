@@ -1,0 +1,138 @@
+
+> pokedex-react@0.0.0 lint
+> eslint .
+
+
+/Users/afiore/REPOSITORY/pokedex-react/src/components/pagination-table/pagination-table.tsx
+  20:13  error  Expected '===' and instead saw '=='  eqeqeq
+
+/Users/afiore/REPOSITORY/pokedex-react/src/components/pokemon-card/pokemon-card.tsx
+  17:11  warning  'isPending' is assigned a value but never used                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                @typescript-eslint/no-unused-vars
+  17:40  warning  'isError' is assigned a value but never used                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  @typescript-eslint/no-unused-vars
+  17:49  warning  'error' is assigned a value but never used                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    @typescript-eslint/no-unused-vars
+  30:7   error    Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+/Users/afiore/REPOSITORY/pokedex-react/src/components/pokemon-card/pokemon-card.tsx:30:7
+  28 |       const pokemonLoaded = { ...data };
+  29 |
+> 30 |       setPokemon({
+     |       ^^^^^^^^^^ Avoid calling setState() directly within an effect
+  31 |         ...pokemon,
+  32 |         baseExperience: pokemonLoaded.baseExperience,
+  33 |         height: pokemonLoaded.height,  react-hooks/set-state-in-effect
+  40:47  error    Expected '!==' and instead saw '!='                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           eqeqeq
+  46:6   warning  React Hook useEffect has missing dependencies: 'data' and 'pokemon'. Either include them or remove the dependency array. You can also do a functional update 'setPokemon(p => ...)' if you only need 'pokemon' in the 'setPokemon' call                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       react-hooks/exhaustive-deps
+
+/Users/afiore/REPOSITORY/pokedex-react/src/converters/pokemon-base-converter.ts
+  13:9  warning  'entity' is defined but never used. Allowed unused args must match /^_/u  @typescript-eslint/no-unused-vars
+
+/Users/afiore/REPOSITORY/pokedex-react/src/converters/pokemon-details-converter.ts
+  10:9  warning  'entity' is defined but never used. Allowed unused args must match /^_/u  @typescript-eslint/no-unused-vars
+
+/Users/afiore/REPOSITORY/pokedex-react/src/main.tsx
+  1:10  warning  'StrictMode' is defined but never used  @typescript-eslint/no-unused-vars
+
+/Users/afiore/REPOSITORY/pokedex-react/src/pages/home-page/home-page.tsx
+  36:35  error    Expected '!==' and instead saw '!='                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          eqeqeq
+  37:7   error    Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+/Users/afiore/REPOSITORY/pokedex-react/src/pages/home-page/home-page.tsx:37:7
+  35 |   useEffect(() => {
+  36 |     if (searchPokemonValue.trim() != "") {
+> 37 |       setLimit(1000000);
+     |       ^^^^^^^^ Avoid calling setState() directly within an effect
+  38 |       setOffset(0);
+  39 |       setPageNumber(1);
+  40 |       setNumberPagesTable(1);                                                                                        react-hooks/set-state-in-effect
+  49:56  error    Expected '===' and instead saw '=='                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          eqeqeq
+  51:64  error    Expected '!==' and instead saw '!='                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          eqeqeq
+  52:7   error    Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+/Users/afiore/REPOSITORY/pokedex-react/src/pages/home-page/home-page.tsx:52:7
+  50 |       const countPages =
+  51 |         data.pokemonCount / limit + (data.pokemonCount % limit != 0 ? 1 : 0);
+> 52 |       setNumberPagesTable(countPages);
+     |       ^^^^^^^^^^^^^^^^^^^ Avoid calling setState() directly within an effect
+  53 |     }
+  54 |   }, [isSuccess, limit]);
+  55 |                                                                 react-hooks/set-state-in-effect
+  54:6   warning  React Hook useEffect has missing dependencies: 'data' and 'searchPokemonValue'. Either include them or remove the dependency array                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           react-hooks/exhaustive-deps
+  59:37  error    Expected '===' and instead saw '=='                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          eqeqeq
+  60:9   error    Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+/Users/afiore/REPOSITORY/pokedex-react/src/pages/home-page/home-page.tsx:60:9
+  58 |       const pokemonListLoaded = data.pokemonBaseList.map((pk) => ({ ...pk }));
+  59 |       if (searchPokemonValue.trim() == "") {
+> 60 |         setPokemonList(pokemonListLoaded);
+     |         ^^^^^^^^^^^^^^ Avoid calling setState() directly within an effect
+  61 |
+  62 |         //console.log("list pokemon", pokemonListLoaded);
+  63 |       } else {  react-hooks/set-state-in-effect
+  70:6   warning  React Hook useEffect has missing dependencies: 'data', 'isFetched', and 'searchPokemonValue'. Either include them or remove the dependency array                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             react-hooks/exhaustive-deps
+  75:22  error    Expected '===' and instead saw '=='                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          eqeqeq
+
+/Users/afiore/REPOSITORY/pokedex-react/src/pages/pokemon-details-page/pokemon-details-page.tsx
+  16:3   warning  Unexpected console statement. Only these console methods are allowed: warn, error                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 no-console
+  22:11  warning  'isPending' is assigned a value but never used                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    @typescript-eslint/no-unused-vars
+  22:22  warning  'isFetched' is assigned a value but never used                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    @typescript-eslint/no-unused-vars
+  36:7   error    Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+/Users/afiore/REPOSITORY/pokedex-react/src/pages/pokemon-details-page/pokemon-details-page.tsx:36:7
+  34 |       const pokemonLoaded = data;
+  35 |
+> 36 |       setPokemon({
+     |       ^^^^^^^^^^ Avoid calling setState() directly within an effect
+  37 |         id: pokemonLoaded.id,
+  38 |         url: pokemonLoaded.url,
+  39 |         name: pokemonLoaded.name,  react-hooks/set-state-in-effect
+
+/Users/afiore/REPOSITORY/pokedex-react/src/repository/pokemon-base-repository.ts
+  48:5  warning  'entity' is defined but never used. Allowed unused args must match /^_/u    @typescript-eslint/no-unused-vars
+  53:5  warning  'entities' is defined but never used. Allowed unused args must match /^_/u  @typescript-eslint/no-unused-vars
+
+/Users/afiore/REPOSITORY/pokedex-react/src/repository/pokemon-details-repository.ts
+  15:5  warning  'entity' is defined but never used. Allowed unused args must match /^_/u           @typescript-eslint/no-unused-vars
+  20:5  warning  'entities' is defined but never used. Allowed unused args must match /^_/u         @typescript-eslint/no-unused-vars
+  30:7  warning  Unexpected console statement. Only these console methods are allowed: warn, error  no-console
+
+/Users/afiore/REPOSITORY/pokedex-react/src/services-impl/pokemon-service.ts
+   6:15  warning  'PokemonBase' is defined but never used                                            @typescript-eslint/no-unused-vars
+  39:7   warning  Unexpected console statement. Only these console methods are allowed: warn, error  no-console
+  51:7   warning  Unexpected console statement. Only these console methods are allowed: warn, error  no-console
+  62:7   warning  Unexpected console statement. Only these console methods are allowed: warn, error  no-console
+
+/Users/afiore/REPOSITORY/pokedex-react/src/services/i-pokemon-service.ts
+  1:34  warning  'PokemonBase' is defined but never used  @typescript-eslint/no-unused-vars
+
+✖ 34 problems (12 errors, 22 warnings)
+

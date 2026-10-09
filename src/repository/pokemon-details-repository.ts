@@ -27,7 +27,7 @@ export class PokemonDetailsRepository implements IRepository<PokemonDetailsDTO> 
     try {
       const url =
         api.BASE_URL + api.GET_POKEMON_DETAILS_URL + requestModel.pathParam;
-      console.log("URL", url);
+      //console.log("URL", url);
 
       const response: Response = await fetch(url);
 

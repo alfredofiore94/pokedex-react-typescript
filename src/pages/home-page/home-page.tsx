@@ -1,7 +1,7 @@
-import { useNavigate } from "react-router-dom";
+/* eslint-disable react-hooks/set-state-in-effect */
 import "./home-page.css";
 import type { BaseList, PokemonBase } from "../../models/pokemon";
-import { useQuery, useQueryClient } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import { PokemonsService } from "../../services-impl/pokemon-service";
 import { useContext, useEffect, useState } from "react";
 import PokemonCard from "../../components/pokemon-card/pokemon-card";
@@ -34,7 +34,7 @@ function HomePage() {
     });
 
   useEffect(() => {
-    if (searchPokemonValue.trim() != "") {
+    if (searchPokemonValue.trim() !== "") {
       setLimit(1000000);
       setOffset(0);
       setPageNumber(1);
@@ -47,9 +47,9 @@ function HomePage() {
   }, [searchPokemonValue]);
 
   useEffect(() => {
-    if (isSuccess && data && searchPokemonValue.trim() == "") {
+    if (isSuccess && data && searchPokemonValue.trim() === "") {
       const countPages =
-        data.pokemonCount / limit + (data.pokemonCount % limit != 0 ? 1 : 0);
+        data.pokemonCount / limit + (data.pokemonCount % limit !== 0 ? 1 : 0);
       setNumberPagesTable(countPages);
     }
   }, [isSuccess, limit]);
@@ -57,7 +57,7 @@ function HomePage() {
   useEffect(() => {
     if (isFetched && data) {
       const pokemonListLoaded = data.pokemonBaseList.map((pk) => ({ ...pk }));
-      if (searchPokemonValue.trim() == "") {
+      if (searchPokemonValue.trim() === "") {
         setPokemonList(pokemonListLoaded);
 
         //console.log("list pokemon", pokemonListLoaded);
@@ -73,7 +73,7 @@ function HomePage() {
   function handleChangePage(selectedPage: number) {
     setPageNumber(selectedPage);
 
-    if (selectedPage == 1) {
+    if (selectedPage === 1) {
       setOffset(0);
     } else {
       const newOffSet = selectedPage * limit - limit;
@@ -102,7 +102,7 @@ function HomePage() {
         )}
 
         {pokemonlist && pokemonlist.length > 0 ? (
-          pokemonlist.map((pokemonB, index) => (
+          pokemonlist.map((pokemonB) => (
             <PokemonCard key={pokemonB.id} pokemonBase={pokemonB}></PokemonCard>
           ))
         ) : (

@@ -1,4 +1,4 @@
-import type { BaseList, Pokemon, PokemonBase } from "../models/pokemon";
+import type { BaseList, Pokemon } from "../models/pokemon";
 
 export interface IPokemonService {
   getPokemonListBaseFiltered: (

@@ -3,7 +3,7 @@ import { PokemonDetailsConverter } from "../converters/pokemon-details-converter
 import type { PokemonBaseDTO } from "../dto/pokemon-base-dto";
 import type { PokemonDetailsDTO } from "../dto/pokemon-details-dto";
 import type { ResponseModel } from "../dto/response-model";
-import type { PokemonBase, Pokemon, BaseList } from "../models/pokemon";
+import type { Pokemon, BaseList } from "../models/pokemon";
 import { PokemonBaseRepository } from "../repository/pokemon-base-repository";
 import { PokemonDetailsRepository } from "../repository/pokemon-details-repository";
 import type { IPokemonService } from "../services/i-pokemon-service";
@@ -36,7 +36,7 @@ export class PokemonsService implements IPokemonService {
     if (responseModel.metadata?.result) {
       return this._pokemonBaseConverter.toEntity(responseModel.payload!);
     } else {
-      console.log(responseModel.metadata?.errorMessage);
+      //console.log(responseModel.metadata?.errorMessage);
     }
 
     throw new Error();
@@ -48,7 +48,7 @@ export class PokemonsService implements IPokemonService {
     if (responseModel.metadata?.result) {
       return this._pokemonDetailsConverter.toEntity(responseModel.payload!);
     } else {
-      console.log(responseModel.metadata?.errorMessage);
+      //console.log(responseModel.metadata?.errorMessage);
     }
 
     throw new Error();
@@ -59,7 +59,7 @@ export class PokemonsService implements IPokemonService {
     if (responseModel.metadata?.result) {
       return this._pokemonBaseConverter.toEntity(responseModel.payload!);
     } else {
-      console.log(responseModel.metadata?.errorMessage);
+      //console.log(responseModel.metadata?.errorMessage);
     }
 
     throw new Error();

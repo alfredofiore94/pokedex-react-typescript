@@ -13,7 +13,7 @@ function PokemonDetailsPage() {
   const idPokemon = isNaN(Number(params.pokemonId))
     ? 0
     : Number(params.pokemonId);
-  console.log();
+  //console.log();
 
   const [pokemon, setPokemon] = useState<Pokemon>(
     initPokemondetails(idPokemon),
@@ -30,7 +30,7 @@ function PokemonDetailsPage() {
     //gcTime: 10000, //garbage collectore , cioè dopo quanto tempo la memoria deve essere svuotata
   });
   useEffect(() => {
-    if (data) {
+    if (data && isFetched) {
       const pokemonLoaded = data;
 
       setPokemon({

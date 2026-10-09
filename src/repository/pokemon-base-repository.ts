@@ -10,7 +10,7 @@ export class PokemonBaseRepository implements IRepository<PokemonBaseDTO> {
   }
   async getEntityAsync(): Promise<ResponseModel<PokemonBaseDTO>> {
     try {
-      let queryParams: string = "?offset=0&limit=999999";
+      const queryParams: string = "?offset=0&limit=999999";
 
       const url = api.BASE_URL + api.GET_POKEMON_LIST_URL + queryParams;
       const response: Response = await fetch(url);
